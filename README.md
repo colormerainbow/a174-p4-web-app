@@ -11,6 +11,7 @@ general posting:
 page and specific topic:
 see under content.rendered for the full page code
     https://www.indexofsciences.com/index.php/wp-json/wp/v2/posts?page=1&search=diabetes
+    https://www.indexofsciences.com/index.php/wp-json/wp/v2/posts?page=1&per_page=5&search=diabetes
 
 documentation:
     https://www.indexofsciences.com/wp-json/wp/v2
@@ -40,6 +41,7 @@ https://api.spoonacular.com/food/products/search?query=yogurt&apiKey=API-KEY
 
 III. Fun APIs
 Random Useless Facts:
+https://uselessfacts.jsph.pl/
     https://uselessfacts.jsph.pl/random.json?language=en
 
 Techy Phrases:
