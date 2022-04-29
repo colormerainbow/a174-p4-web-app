@@ -23,7 +23,7 @@ iframe {
 }
 #container {
     border: 2px solid black;
-    background-color:cornsilk;
+    background-color:lightgrey;
 }
 #fun-container {
     display: grid;
@@ -31,14 +31,17 @@ iframe {
     border: 1px solid black;
 }
 .fun1 {
-    background-color: lightblue;
+    background-color: rgb(186, 222, 234);
     padding: .5rem;
 }
 .fun2 {
-    background-color: lightgreen;
+    background-color: rgb(183, 234, 183);
     padding: .5rem;
 }
 .article-buttons {
     display: flex;
     flex-direction: row;
 } 
+#playful {
+    padding-left: .5rem;
+}
