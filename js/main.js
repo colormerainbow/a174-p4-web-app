@@ -46,7 +46,7 @@ async function presentFact() {
 //Fun Section: Fetch Techy Talk
 async function getTech() {
     try {
-        let response = await fetch(" https://techy-api.vercel.app/api/json");
+        let response = await fetch("https://techy-api.vercel.app/api/json");
         let data = await response.json();
         return data;
     } catch (err) {
@@ -64,7 +64,7 @@ async function presentTech() {
     }
 }
 
-//Function to gather the article json information
+//Function to gather the health article json information
 async function getArticles(page) {
     try {
         let api = `https://www.indexofsciences.com/index.php/wp-json/wp/v2/posts?per_page=${articlesPerPage}&page=${page}`;

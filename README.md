@@ -46,3 +46,8 @@ https://uselessfacts.jsph.pl/
 
 Techy Phrases:
     https://techy-api.vercel.app/api/json
+
+Magic-8 ball
+    https://magic-8ball.com/
+    embedded code:
+    <iframe id="magic-8ball" style="width:100%;border:none;overflow:hidden;min-height:515px" src="https://magic-8ball.com/?embed_widget" scrolling="no"></iframe>
