@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Raleway:wght@500&display=swap');
 * {
     box-sizing: border-box;
 }
 h1 {
     text-align: center;
     padding: 1rem;
+    font-family: 'Raleway', sans-serif;
+}
+h2 {
+    font-family: 'Raleway', sans-serif;
 }
 h4 {
     display: none;
@@ -11,6 +16,8 @@ h4 {
 body {
     padding: 1rem;
     background-color: blanchedalmond;
+    max-width: 1080px;
+    font-family: 'Inter', sans-serif;
 }
 #article {
     border: 2px solid black;
@@ -42,6 +49,10 @@ iframe {
     display: flex;
     flex-direction: row;
 } 
+#intro {
+    padding-left: .5rem;
+    padding-right: 1rem;
+}
 #playful {
     padding-left: .5rem;
 }
