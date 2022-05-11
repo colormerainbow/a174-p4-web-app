@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", init);
 const featurePage = document.getElementById("feature-article");
 let articles=[];
 let articleNumber = 0;
-const articlesPerPage = 2;
+const articlesPerPage = 3;
 
 /* set up the page content with the feeds */
 function init() {
@@ -86,7 +86,7 @@ async function processArticles(page) {
         articles = articles.concat(newPage);
         console.log('articles new page is', articles);
 
-        console.log('array postion is', articleNumber);
+        console.log('array position is', articleNumber);
         assignArticle(articleNumber);
     } catch (err) {
         console.log('There is an error', err);
