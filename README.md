@@ -51,3 +51,8 @@ Magic-8 ball
     https://magic-8ball.com/
     embedded code:
     <iframe id="magic-8ball" style="width:100%;border:none;overflow:hidden;min-height:515px" src="https://magic-8ball.com/?embed_widget" scrolling="no"></iframe>
+
+    Random Number APIs
+    https://csrng.net/csrng/csrng.php?min=0&max=100
+
+    http://www.randomnumberapi.com/api/v1.0/random?min=1&max=100&count=5
