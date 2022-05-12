@@ -142,8 +142,9 @@ async function assignArticle(n){
         featurePage.src = article.link;
         console.log('featurePage via link, article no.', n);
     } else {
-        featurePage.src = article.content.rendered;
-        console.log('featurePage via db, article no.', n, article.content.rendered);
+        document.getElementById('offline-article').innerHTML = ('<h2>'+article.title.rendered+'</h2>'+article.content.rendered);
+        featurePage.src = "";
+        console.log('featurePage via db, article no.', n, article.title.rendered);
     }
 }
 
