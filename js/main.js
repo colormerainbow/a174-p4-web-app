@@ -4,13 +4,39 @@
 document.addEventListener("DOMContentLoaded", init);
 const featurePage = document.getElementById("feature-article");
 let articles=[];
-let articleNumber = 0;
+let articleNumber = 1;
 const articlesPerPage = 3;
+
+  // create new indexDB database
+  var db = new Dexie("HealthNewsDB");
+
+/* check if internet connectivity is present */
+setInterval(function(){
+    var status = navigator.onLine ? 'You are online!' : 'You are offline!';
+    console.log(status);
+    console.log();
+}, 5000); 
+window.addEventListener('offline', function(e) { 
+    console.log('offline'); 
+});
+
+window.addEventListener('online', function(e) { 
+    console.log('online'); 
+});
 
 /* set up the page content with the feeds */
 function init() {
-    // Fetch and display the new article feed
-    processArticles(1);
+
+    // initialize the database schema
+    dbInit();
+    // Display the initial article feed from db or fetch if db not populated
+    db.news.count((dbCount) => {
+        if (dbCount > 0) {
+            assignArticle(1);
+        } else {
+            processArticles(1);
+        }
+    });
     presentFact();
     presentTech();
 
@@ -22,6 +48,15 @@ function init() {
      prevArticle.addEventListener("click", changeArticle);
      nextArticle.addEventListener("click", changeArticle);
 }
+
+// function to initialize the indexedDB
+function dbInit() {
+    db.version(1).stores({
+        news: "++, &link, title.rendered, content.rendered"
+    });
+}
+
+
 //Fun Section: Fetch Random Fact
 async function getFact() {
     try {
@@ -81,40 +116,56 @@ async function getArticles(page) {
 async function processArticles(page) {
     try {
         let newPage = await getArticles(page);
-        console.log(newPage);
-        articleNumber = articles.length;
-        articles = articles.concat(newPage);
-        console.log('articles new page is', articles);
+        console.log('new page is', newPage);
 
-        console.log('array position is', articleNumber);
-        assignArticle(articleNumber);
+        if (newPage) { 
+            articleNumber = await db.news.count()+1;
+
+            // load content into db for backup if lose internet connection
+            db.news.bulkPut(newPage);
+
+            console.log('article number is', articleNumber);
+            assignArticle(articleNumber);
+        } else {
+            alert('Cannot get new articles at this time');
+        }
     } catch (err) {
         console.log('There is an error', err);
     }
 }
 
-function assignArticle(n){
-    featurePage.src = articles[n].link;
-    console.log('featurePage', articleNumber);
+async function assignArticle(n){
+    const article = await db.news 
+        .where(":id").equals(n).first();
+    console.log('The article is:', n, article);
+    if (navigator.onLine) {
+        featurePage.src = article.link;
+        console.log('featurePage via link, article no.', n);
+    } else {
+        featurePage.src = article.content.rendered;
+        console.log('featurePage via db, article no.', n, article.content.rendered);
+    }
 }
 
-function changeArticle(e) {
+async function changeArticle(e) {
     // stop link from trying to reload page
     e.preventDefault();
 
     // check if we are at the end of the articles collection
 
     if (e.target.className ==='back') {
-        if ((articleNumber === 0)) {
+        if ((articleNumber === 1)) {
             alert('No more articles');
         } else {
             articleNumber--;
             assignArticle(articleNumber);
         }
     } else {
-        console.log('forward,', articleNumber, articleNumber === (articles.length-1))
-        if (articleNumber === (articles.length -1)) {
-            page = (Math.floor(articles.length/articlesPerPage) + 1);
+        console.log('forward, current article no.', articleNumber);
+        let dbCount = await db.news.count();
+        if (articleNumber === dbCount) {
+            page = (Math.floor(dbCount/articlesPerPage) + 1);
+            console.log('page number is', page);
             processArticles(page);
         } else {
             articleNumber++;
