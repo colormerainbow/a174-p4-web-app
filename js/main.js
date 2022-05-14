@@ -3,6 +3,8 @@
 
 document.addEventListener("DOMContentLoaded", init);
 const featurePage = document.getElementById("feature-article");
+const prevArticle = document.querySelector(".back");
+const nextArticle = document.querySelector(".next");
 let articles=[];
 let articleNumber = 1;
 const articlesPerPage = 3;
@@ -16,12 +18,20 @@ setInterval(function(){
     console.log(status);
     console.log();
 }, 5000); 
+
 window.addEventListener('offline', function(e) { 
     console.log('offline'); 
+    db.news.count((dbCount) => {
+        if (articleNumber === dbCount) {
+            nextArticle.classList.add("hide");
+            console.log('artNumber is', articleNumber, 'dbCount is', dbCount);
+        }
+    })
 });
 
 window.addEventListener('online', function(e) { 
     console.log('online'); 
+    nextArticle.classList.remove("hide");
 });
 
 /* set up the page content with the feeds */
@@ -40,9 +50,10 @@ function init() {
     presentFact();
     presentTech();
 
-    /* create shourtcut vars */
+    /* create shourtcut vars 
     const prevArticle = document.querySelector(".back");
     const nextArticle = document.querySelector(".next");
+    */
 
      /*Detect when user requests to change the article */
      prevArticle.addEventListener("click", changeArticle);
@@ -140,7 +151,8 @@ async function assignArticle(n){
     console.log('The article is:', n, article);
     if (navigator.onLine) {
         featurePage.src = article.link;
-        console.log('featurePage via link, article no.', n);
+        document.getElementById('offline-article').innerHTML = "";
+        console.log('featurePage via link, article no.', n, article.title.rendered);
     } else {
         document.getElementById('offline-article').innerHTML = ('<h2>'+article.title.rendered+'</h2>'+article.content.rendered);
         featurePage.src = "";
@@ -159,20 +171,31 @@ async function changeArticle(e) {
             alert('No more articles');
         } else {
             articleNumber--;
+            nextArticle.classList.remove("hide");
+            if ((articleNumber === 1)) {
+                prevArticle.classList.add("hide");
+            }
             assignArticle(articleNumber);
         }
     } else {
         console.log('forward, current article no.', articleNumber);
+        prevArticle.classList.remove('hide');
         let dbCount = await db.news.count();
         if (articleNumber === dbCount) {
-            page = (Math.floor(dbCount/articlesPerPage) + 1);
-            console.log('page number is', page);
-            processArticles(page);
+            if (navigator.onLine) {
+                page = (Math.floor(dbCount/articlesPerPage) + 1);
+                console.log('page number is', page);
+                processArticles(page);
+            } else {
+                nextArticle.classList.add("hide");
+            }
         } else {
             articleNumber++;
             assignArticle(articleNumber);
         }
     }
 }
+
+
 
 //Detect for request to change the article topic search criteria
