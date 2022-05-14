@@ -1,9 +1,10 @@
 ARTDM174 Lab8 Assignment
 
-Demonstrates the use of indexedDB with Dexie to save fetched health articles into a local DB and displays the content as a web page (via URL) when there is internet connectivity. During a session, if the internet connection drops, the page will still allow the user to see the main content (without images) of the articles for a smooth user experience. 
-Bonus branch: 
-remove PREVIOUS button when the first article is being displayed (to avoid error that there are no more previous pages)
-when internet connection is lost, remove NEXT button when the last saved article is being displayed (since it is not able to fetch more articles)
+Demonstrates the use of indexedDB with Dexie to save fetched health articles into a local DB. App displays the content as a web page (via URL) when there is internet connectivity. If the internet connection drops, the page will still allow the user to see the main content (without images) of the articles for a smooth user experience. Note that the links on the page are grey and smaller font-size to indicate that the links will not work in offline mode. On subsequent visits to the page, app still has access to previously fetched content. 
+
+Bonus: 
+PREVIOUS button is hidden when the first article is being displayed (to prevent the user from trying to go back any further).
+When internet connection is lost, the NEXT button is removed when the last saved article is displayed (since we cannot fetch more articles in offline mode).
 
 
 API Sources:
