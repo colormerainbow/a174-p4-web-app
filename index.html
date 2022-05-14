@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARTDM174 Lab7 Fun Remote APIs</title>
+    <title>ARTDM174 Lab8 Local Storage</title>
+    <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <script src="js/main.js" defer></script>
 </head>
@@ -34,9 +35,10 @@
     <section id="article">
         <h4>Placeholder</h4>
         <div class="article-buttons">
-            <button class="back">Previous</button>
-            <button class="next">Next</button>
+            <button class="back hide">Previous</button>
+            <button class="next current">Next</button>
         </div>
+        <div id="offline-article" target="feature"></div>
         <iframe id="feature-article" src="" name="feature"></iframe>
     </section>
     <!--

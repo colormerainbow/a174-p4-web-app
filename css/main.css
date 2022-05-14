@@ -13,6 +13,20 @@ h2 {
 h4 {
     display: none;
 }
+.hide {
+    opacity: 0;
+    background-color: dimgray;
+    transition: opacity 1s ease-out;
+}
+/*
+.hide {
+    display: none;
+}*/
+/*
+.current {
+    transition: opacity 1s ease-out;
+}
+*/
 body {
     padding: 1rem;
     background-color: blanchedalmond;
@@ -23,7 +37,13 @@ body {
     border: 2px solid black;
     display: flex;
     flex-direction: column;
+    margin-top: 2rem;
 }
+#feature-article {
+    white-space: pre-line;
+    overflow-x: scroll;
+  }
+
 iframe {
     width: 100%;
     height: 45vh;
@@ -46,9 +66,17 @@ iframe {
     padding: .5rem;
 }
 .article-buttons {
+    background-color: lightgrey;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    padding: .5rem;
 } 
+button {
+    background-color:#8ac926;
+    color: black;
+    padding: .5rem;
+}
 #intro {
     padding-left: .5rem;
     padding-right: 1rem;
