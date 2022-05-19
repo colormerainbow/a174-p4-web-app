@@ -200,6 +200,24 @@ async function changeArticle(e) {
     }
 }
 
-
-
 //Detect for request to change the article topic search criteria
+
+/* Nutrition - Meal Planning Section */
+
+//set variables based on user selection
+const diet = document.getElementById('diet');
+const allergy = document.getElementById('allergy');
+const findRecipe = document.getElementById('recipe');
+
+findRecipe.addEventListener('click', getRecipe);
+
+async function getRecipe() {
+    var dietType = diet.options[diet.selectedIndex].text;
+    console.log('Diet selected:', dietType);
+
+    var exclude = allergy.options[allergy.selectedIndex].text;
+    document.getElementById("temp").innerHTML = dietType + exclude;
+    console.log('Exclude from recipe:', exclude);
+
+    //run the fetch command and display recipe options
+}

@@ -63,3 +63,47 @@ Magic-8 ball
     https://csrng.net/csrng/csrng.php?min=0&max=100
 
     http://www.randomnumberapi.com/api/v1.0/random?min=1&max=100&count=5
+
+
+USDA
+Guide: https://fdc.nal.usda.gov/api-guide.html
+
+
+Fetch and JSONs:
+
+Base recipes:
+https://api.spoonacular.com/recipes/complexSearch?query=pasta&minProtein=12&maxSaturatedFat=3&minFiber=8&addRecipeNutrition=true&number=3&apiKey=
+baserecipe.json
+
+https://api.spoonacular.com/mealplanner/generate?timeFrame=day&apiKey=
+onedaymeal.json
+
+https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=10&apiKey=
+fBiapplefloursugar10.json
+
+https://api.spoonacular.com/food/products/search?query=yogurt&apiKey=
+searchyogurt.json
+
+https://api.spoonacular.com/recipes/findByNutrients?minFiber=8&maxFiber=25&number=2&apiKey=
+fBNmFiberMFiber2.json
+
+https://api.spoonacular.com/recipes/complexSearch?query=pasta&maxSaturatedFat=5&intolerances=dairy&diet=vegetarian&number=2&apiKey=
+cSearchPastaMSFatIntDairyVeg2.json
+
+https://api.spoonacular.com/recipes/complexSearch?query=pasta&maxSaturatedFat=5&intolerances=dairy&diet=whole30&addRecipeNutrition=true&number=2&apiKey=
+cSearchPastaMSFatIntDairyW30Nutn2.json
+
+https://api.spoonacular.com/recipes/complexSearch?query=pasta&minFiber=10&intolerances=peanut&diet=Vegetarian&addRecipeNutrition=true&number=2&apiKey=
+cSearchIntPnutVegNutn2.json
+
+https://api.spoonacular.com/recipes/complexSearch?query=rice&minProtein=12&intolerances=egg&diet=Vegetarian&addRecipeNutrition=true&number=3&apiKey=
+cSearchRiceProIntEggVegNutn2.json
+
+https://api.spoonacular.com/recipes/complexSearch?query=pasta&minProtein=12&intolerances=gluten&diet=Vegetarian&addRecipeNutrition=true&number=3&apiKey=
+cSearchPastaProGlutenVegNutn3.json
+
+https://api.spoonacular.com/recipes/complexSearch?query=corn&minProtein=12&intolerances=gluten&diet=Vegetarian&addRecipeNutrition=true&number=3&apiKey=
+cSearchCornProGlutenVegNutn3.json
+
+https://api.spoonacular.com/recipes/complexSearch?query=corn&minProtein=12&intolerances=gluten&diet=Ketogenic&addRecipeNutrition=true&number=3&apiKey=
+cSearchCornProGlutenKetoNtn3.json

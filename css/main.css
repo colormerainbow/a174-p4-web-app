@@ -14,7 +14,7 @@ h2 {
     font-family: 'Raleway', sans-serif;
 }
 
-h4,
+h5,
 .hide-all {
     display: none;
 }
@@ -33,10 +33,44 @@ h4,
 body {
     padding: 1rem;
     background-color: blanchedalmond;
-    max-width: 1080px;
+   // max-width: 1080px;
     font-family: 'Inter', sans-serif;
 }
+#nutrition {
+    background-color: #e07a5f;
+    padding: 1rem;
+}
 
+/* adjust this to be center aligned */
+#select-menu li {
+    margin: 8px 8px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    background: peachpuff;
+    box-shadow: 0px 5px 5px #555b6e;
+    border-radius: 20px;
+    max-width: 350px;
+  }
+  
+ol {
+    list-style: none;
+    margin: 0rem;
+    padding: .5rem;
+}
+.menubtn {
+    width: 50%;
+    text-align: center;
+}
+.recipe-img {
+    padding: .5rem;
+}
+/* use this at larger mediascreen size? 
+#select-menu {
+    display: flex;
+    flex-direction: row;
+}*/
 #article {
     border: 2px solid black;
     display: flex;

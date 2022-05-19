@@ -1,0 +1,22 @@
+[
+    {
+        "category": "nutrition",
+        "challenge": "Substitute one item you normally eat that has added sugar with a healthier alternative.",
+        "ideas": ["Apple", "Chopped Carrots", "Plain Low-Fat Yogurt with fruit", "Raisins", "Mint Tea (no sugar)", "Skim Milk"]
+    },
+    {
+        "category": "activity",
+        "challenge": "Set aside an extra 20 minutes today for an activity.",
+        "ideas": ["Brisk Walk", "Vaccuum", "Play Tag", "Dance"]
+    }, 
+    {
+        "category": "stress",
+        "challenge": "Plan to go to bed on time tonight ",
+        "ideas": ["Robert", "Stannis", "Renly"]
+    },
+    {
+        "category": "reward",
+        "challenge": "Targaryen",
+        "ideas": ["Aerys", "Daenerys", "Viserys"]
+    } 
+]

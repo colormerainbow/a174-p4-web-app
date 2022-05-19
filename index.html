@@ -26,7 +26,7 @@
             section below to get your daily dose and share it with others.</p>
 
     </section>
-    <div id="container">
+    <section id="container">
         <h2 id="playful">Just for Fun</h2>
 
         <div id="fun-container">
@@ -39,9 +39,78 @@
                 <div id="techy">Techy Talk</div>
             </section>
         </div>
-    </div>
+    </section>
+
+    <section id="nutrition">
+        <h2>Nutrition and Meal Planning</h2>
+        <p>"You are what you eat!" - There is more truth to this than we give it credit for. Did you know that the top chronic diseases leading to death and disability in the US are preventable? Most chronic diseases are caused by a very short list of risky behaviors: tobacco use, physical inactivity, excessive alcohol use, and poor nutrition.</p>
+        <h3>Take Action Now: More Nutritious Meals</h3>
+        <p>Start here to pack more nutrition into your daily diet:</p>
+
+        <section id="preferences">
+        <form>
+            <label for="diet">Type of Diet: </label> 
+              <select name="diet" id="diet">
+            <option value="" selected>Select a Diet</option> 
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Whole30">Whole 30</option>
+            <option value="Ketogenic">Ketogenic</option>
+            <option value="">No Restrictions</option>
+              </select>
+            </form>
+
+        <form>
+            <label for="allergy">Intolerances: </label> 
+                <select name="allergy" id="allergy">
+            <option value="" selected>Intolerances</option> 
+            <option value="dairy">Milk</option>
+            <option value="egg">Eggs</option>
+            <option value="gluten">Gluten</option>
+            <option value="peanut">Peanut</option>
+            <option value="shellfish">Shellfish</option>
+            <option value="wheat">Wheat</option>
+            <option value="">No Restrictions</option>
+                </select>
+            </form>
+
+        <input type="button" id="recipe" value="Find Nutritious Recipes">
+        </section>
+        <section id="menus">
+            <div id="temp"></div>
+
+           
+        <ul>Recipe Features:
+            <li>Low Saturated Fat</li>
+            <li>High Fiber</li>
+            <li>High Protein</li>
+        </ul>
+
+        <ol id="select-menu">
+            <li id="recipe1">
+                <h4>Recipe1</h4>
+                <img class="recipe-img" src="https://spoonacular.com/recipeImages/654857-312x231.jpg" width="300" height="200" alt="">
+                <button id="detail1" class="menubtn">Show Recipe</button>
+            </li>
+            <li id="recipe2">
+                <h4>Recipe2</h4>
+                <img class="recipe-img" src="https://spoonacular.com/recipeImages/654905-312x231.jpg" width="300" height="200" alt="">
+                <button id="detail2" class="menubtn">Show Recipe</button>
+            </li>
+        </ol>
+
+        </section>
+        <!--
+        <div class="nutrition-buttons">
+            <button class="back">Previous</button>
+            <button class="next">Next</button>
+        </div>
+        <iframe id="meal-planning" src="" name="meal"></iframe>
+        -->
+    </section>
+
+
     <section id="article">
-        <h4>Placeholder</h4>
+        <h5>Placeholder</h5>
         <div class="article-buttons">
             <button class="back hide">Previous</button>
             <button class="next current">Next</button>
@@ -49,16 +118,6 @@
         <div id="offline-article" target="feature"></div>
         <iframe id="feature-article" src="" name="feature"></iframe>
     </section>
-    <!--
-    <section id="nutrition">
-        <h4>Placeholder</h4>
-        <div class="nutrition-buttons">
-            <button class="back">Previous</button>
-            <button class="next">Next</button>
-        </div>
-        <iframe id="meal-planning" src="" name="meal"></iframe>
-    </section>
-    -->
 </body>
 
 </html>
