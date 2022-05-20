@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", init);
 const featurePage = document.getElementById("feature-article");
 const prevArticle = document.querySelector(".back");
 const nextArticle = document.querySelector(".next");
+const recipeList = document.getElementById('recipeList');
 
 var articleNumber = 1;
 // set the number of items fetched for each API call, up to max 10 for articles
@@ -52,7 +53,7 @@ function init() {
     // Initially display the recipes from db loaded from previous session or fetch if db not populated
     recipedb.recipes.count((recipedbCount) => {
         if (recipedbCount > 0) {
-            postRecipe(1);
+            postRecipe();
         } else {
             processRecipe();
         }
@@ -250,12 +251,13 @@ async function getRecipe() {
  
     try {
     //    let menuApi = `https://api.spoonacular.com/recipes/complexSearch?minProtein=20&maxSodium=500&maxSaturatedFat=3&minFiber=8${excludeFilter}${dietFilter}&addRecipeNutrition=true&number=${numRecipe}&apiKey=${myStuff}`;
+    console.log('fetchAPI dietfilter', dietFilter, 'exclude:', excludeFilter);
         let menuApi = `js/menustarter.json`; 
-        console.log('menuApi is', menuApi);
+        console.log('menuApi used is', menuApi);
         let menuData = await fetch(menuApi);
-        console.log('menuData is', menuData);
+        console.log('menuData fetched is', menuData);
         let menus = await menuData.json();
-        console.log('menus are', menus);
+        console.log('menus jsonfmt are', menus);
 
         const menuArray = menus.results;
         console.log('api data fetched is:', menuArray);
@@ -272,32 +274,53 @@ async function processRecipe() {
         console.log('new recipes are', newRecipes);
 
         // load or add content into db for backup if lose internet connection
-        recipedb.recipes.bulkPut(newRecipes);
-        console.log('recipes loaded into indexedDB');
-        postRecipe(1);
+        if (newRecipes) {
+            await recipedb.recipes.clear();
+            console.log('indexdb cleared!!');
+            await recipedb.recipes.bulkPut(newRecipes);
+            console.log('new recipes loaded into indexedDB');
+        } else {
+            console.log('something wrong with newRecipes', newRecipes);
+        }
+        postRecipe();
 
     } catch (err) {
         console.log('There is an error with processArticles', err);
     }
 }
 
-async function postRecipe(n) {
+async function postRecipe() {
    // var rbox2 = document.getElementById('recipe2box');
-   const recipeList = document.getElementById('recipeList');
+    console.log('recipeList start of postRecipe', recipeList);
+    console.log('recipeList.firstChild is', recipeList.firstChild);
+    let z=1;
+    while (recipeList.firstChild) {
+        recipeList.removeChild(recipeList.firstChild);
+        console.log('cleanse cycle', z);
+        console.log('next cleanse recipeList.firstChild is', recipeList.firstChild);
+        z++;
+    }
+    console.log('recipeList is cleansed:', recipeList);
+
     try {
         recipedb.recipes.each((recipe) => {
-            console.log("recipe is", recipe);
+            console.log("postrecipe is", recipe);
             const li = document.createElement("LI");
             var h4 = document.createElement("H4");
             h4.innerHTML = recipe.title;
             console.log(recipe.title,'is the recipe name');
             var image = document.createElement("IMG");
             image.src = recipe.image;
-            var rUrl = document.createElement("A");
+            let rUrl = document.createElement("A");
             rUrl.href = recipe.spoonacularSourceUrl;
             rUrl.innerHTML = "Show Recipe";
             rUrl.classList.add("menubtn");
-            recipeList.append(li, h4, rUrl, image);
+            rUrl.setAttribute('target', '_blank');
+            li.appendChild(h4);
+            li.appendChild(rUrl);
+            li.appendChild(image);
+            recipeList.appendChild(li);
+            console.log('added to html via js at recipeList', recipeList);
             });
     
         }catch (err) {

@@ -1,8 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Raleway:wght@500&display=swap');
 
+/* color palette
+#e0e1dd;
+#778da9;
+#415a77;
+#1b263b;
+#0d1b2a;
+or
+#93b7be;
+#f1fffa;
+#d5c7bc;
+#785964;
+#454545;
+*/
+
+
 * {
     box-sizing: border-box;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Hubballi&family=Nunito+Sans:wght@400;700&family=Roboto+Flex:opsz,wght@8..144,100;8..144,300;8..144,400&display=swap');
 
 h1 {
     text-align: center;
@@ -46,8 +63,9 @@ body {
     background: peachpuff;
 }
 #recipeList {
+    background-color: black;
     margin: 2px;
-    padding: 5px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
     justify-content:left;
@@ -55,7 +73,22 @@ body {
   //  border-radius: 20px;
     max-width: 350px;
   }
-  
+#recipeList a {
+    background-color: yellow;
+    margin: 2px;
+    padding: 8px;
+  }
+  #recipeList li {
+    background-color: skyblue;
+    margin: 2px;
+    padding: 8px;
+    max-width: 350px;
+  }
+  #recipeList h4 {
+    margin: 1px;
+    padding: 18px;
+    text-align: center;
+  }
 ol {
     list-style: none;
     margin: 0rem;
