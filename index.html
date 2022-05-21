@@ -5,52 +5,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARTDM174 Lab8 Local Storage</title>
+    <title>ARTDM174 Project 4 Web App</title>
     <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
     <link rel="stylesheet" href="css/main.css">
-    <script src="alt.js"></script>
+    <script src="js/alt.js"></script>
     <script src="js/main.js" defer></script>
 </head>
 
 <body>
-    <h1>Fun with Remote APIs</h1>
-    <section id="intro">
-        <h2>Healthy Living</h2>
-        <p>Achieving health is a life-long commitment. The best approach is to adopt a healthy lifestyle and stick with
-            it. This means finding the right personal balance of activity, nutrition, and adopting habits to safeguard
-            against diseases.</p>
-        <p>Most diseases are preventable, especially if you understand them. Keep up to date on the top health concerns
-            through these articles, and then use the handy app below to plan creative and delicious meals that are
-            nutrition-packed to get you to your personal best. Food is the best medicine, and a healthy diet and
-            lifestyle is key to preventing the top 7 chronic diseases in America.</p>
-        <p>Don't forget to include humor and laughter to round off your healthy regimen. Check out the "Just for Fun"
-            section below to get your daily dose and share it with others.</p>
+    <header>
+        <h1>Wellness from Within</h1>
+    </header>
+    <main>
+    <article id="intro">
+        <h2>Living Healthy &amp; Loving It</h2>
+        <p>Start your journey towards a healthy lifestyle today. Use the resources and apps below to find the perfect balance of nutrition, wellness habits, activity and fun to keep the bounce in your step going strong!</p>
+    </article>
 
-    </section>
-    <section id="container">
-        <h2 id="playful">Just for Fun</h2>
+    <article id="nutrition">
+        <h2>Nutritious Meal Planning</h2>
+        <p>"You are what you eat!" - There is more truth to this than we give it credit for. Did you know that the top chronic diseases leading to death and disability in the US are preventable by modifying a short list of behaviors? Eating nutritiously is your ticket!</p>
 
-        <div id="fun-container">
-            <section class="fun1">
-                <h3>Fun Fact:</h3>
-                <div id="factoid">Random Fact</div>
-            </section>
-            <section class="fun2">
-                <h3>Smart Talk:</h3>
-                <div id="techy">Techy Talk</div>
-            </section>
-        </div>
-    </section>
-
-    <section id="nutrition">
-        <h2>Nutrition and Meal Planning</h2>
-        <p>"You are what you eat!" - There is more truth to this than we give it credit for. Did you know that the top chronic diseases leading to death and disability in the US are preventable? Most chronic diseases are caused by a very short list of risky behaviors: tobacco use, physical inactivity, excessive alcohol use, and poor nutrition.</p>
-        <h3>Take Action Now: More Nutritious Meals</h3>
-        <p>Start here to pack more nutrition into your daily diet:</p>
-
-        <section id="preferences">
+<article id="recipe-app">
+    <section id="preferences">
+        <h3>Explore recipes:</h3>
         <form>
-            <label for="diet">Type of Diet: </label> 
+            <label for="diet">Type of Diet:  <span><img src="images/information-button.png" width="15" height="15" id="infobtn" alt="info on different diet plans"></span> </label> 
               <select name="diet" id="diet">
             <option value="" selected></option> 
             <option value="Vegetarian">Vegetarian</option>
@@ -73,45 +53,26 @@
             </form>
 
         <input type="button" id="recipe" value="Find Nutritious Recipes">
-        </section>
-        <section id="menus">
-            <div id="temp"></div>
-
-           
-        <ul>These Recipes Feature:
-            <li>Low Saturated Fat</li>
-            <li>High Fiber</li>
-            <li>High Protein</li>
-            <li><a href=""></a></li>
-        </ul>
-
-        <ol  id="recipeList"></ol>
-        <!--
-            <li>
-                <h4 id="recipe1"></h4>
-                <img id="recipe1img" class="recipe-img" src="" width="300" height="200" alt="">
-                <button id="detail1" class="menubtn">Show Recipe</button>
-            </li>
-            <li id="recipe2box">
-                <h4 id="recipe2"></h4>
-                <img id="recipe2img" class="recipe-img" src="" width="300" height="200" alt="">
-                <button id="detail2" class="menubtn">Show Recipe</button>
-            </li>
-        -->
-
-        </section>
-        <!--
-        <div class="nutrition-buttons">
-            <button class="back">Previous</button>
-            <button class="next">Next</button>
-        </div>
-        <iframe id="meal-planning" src="" name="meal"></iframe>
-        -->
     </section>
+
+    <section id="results">
+        <h3>Selected Recipes:</h3>
+        <p>Low Saturated Fat / Low Sodium / High Fiber / High Protein </p>
+        <div id="choices"></div>
+    </section>    
+</article>
+
+    <section id="menus">
+        <ol  id="recipeList"></ol>
+    </section>
+
+    </article>
 
 
     <section id="article">
-        <h5>Placeholder</h5>
+        <h2>Awareness Empowerment</h2>
+        <p>Most diseases are preventable, especially if you understand them. Keep up to date on lastest scientifically-backed news on the top health concerns and best practices to prevent them. 
+           </p>
         <div class="article-buttons">
             <button class="back hide">Previous</button>
             <button class="next current">Next</button>
@@ -119,6 +80,23 @@
         <div id="offline-article" target="feature"></div>
         <iframe id="feature-article" src="" name="feature"></iframe>
     </section>
+
+    <section id="container">
+        <h2 id="playful">Just for Fun</h2>
+        <p>Don't forget to include humor and laughter to round off your healthy regimen. Get your daily dose here and share it with others.</p>
+
+        <div id="fun-container">
+            <section class="fun1">
+                <h3>Fun Fact:</h3>
+                <div id="factoid">Random Fact</div>
+            </section>
+            <section class="fun2">
+                <h3>Smart Talk:</h3>
+                <div id="techy">Techy Talk</div>
+            </section>
+        </div>
+    </section>
+</main>
 </body>
 
 </html>

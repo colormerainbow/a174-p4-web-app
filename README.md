@@ -7,6 +7,10 @@ PREVIOUS button is hidden when the first article is being displayed (to prevent 
 When internet connection is lost, the NEXT button is removed when the last saved article is displayed (since we cannot fetch more articles in offline mode).
 
 
+Attribution:
+<a href="https://www.flaticon.com/free-icons/info" title="info icons">Info icons created by Freepik - Flaticon</a>
+Copy this link and paste it wherever it's visible, close to where you’re using the resource. If that's not possible, place it at the footer of your website, blog or newsletter, or in the credits section.
+
 API Sources:
 
 I. General info:

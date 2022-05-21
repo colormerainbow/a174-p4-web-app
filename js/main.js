@@ -5,11 +5,12 @@ const featurePage = document.getElementById("feature-article");
 const prevArticle = document.querySelector(".back");
 const nextArticle = document.querySelector(".next");
 const recipeList = document.getElementById('recipeList');
+const infobtn = document.getElementById('infobtn');
 
 var articleNumber = 1;
 // set the number of items fetched for each API call, up to max 10 for articles
 const articlesPerPage = 3;
-const numRecipe = 4;
+const numRecipe = 6;
 
 
 // create new indexedDB databases
@@ -65,8 +66,6 @@ function init() {
     /*Detect when user requests to change the article */
     prevArticle.addEventListener("click", changeArticle);
     nextArticle.addEventListener("click", changeArticle);
-
-
 }
 
 // function to initialize the indexedDB for health news articles
@@ -228,14 +227,26 @@ var diet = document.getElementById('diet');
 var allergy = document.getElementById('allergy');
 var findRecipe = document.getElementById('recipe');
 
+// Listen for user's request for new recipes
 findRecipe.addEventListener('click', processRecipe);
+// Listen for a click on the info button to provide info
+infobtn.addEventListener("click", infoPage);
+
+function infoPage() {
+    window.open('https://spoonacular.com/academy/which-diet-is-best-for-me', '_blank');
+    console.log('info clicked');
+}
 
 async function getRecipe() {
     var dietType = diet.options[diet.selectedIndex].text;
     console.log('Diet selected:', dietType);
 
     var exclude = allergy.options[allergy.selectedIndex].text;
-    document.getElementById("temp").innerHTML = dietType + exclude;
+    var spec = [];
+    if (dietType) spec.push(dietType);
+    if (exclude) spec.push(`NO ${exclude}`);
+
+    document.getElementById("choices").innerHTML = spec.join(" and ");
     console.log('Exclude from recipe:', exclude);
 
     var dietFilter = "";
@@ -250,9 +261,9 @@ async function getRecipe() {
     //run the fetch command with user preferences and display recipe options
  
     try {
-    //    let menuApi = `https://api.spoonacular.com/recipes/complexSearch?minProtein=20&maxSodium=500&maxSaturatedFat=3&minFiber=8${excludeFilter}${dietFilter}&addRecipeNutrition=true&number=${numRecipe}&apiKey=${myStuff}`;
+        let menuApi = `https://api.spoonacular.com/recipes/complexSearch?minProtein=20&maxSodium=500&maxSaturatedFat=3&minFiber=8${excludeFilter}${dietFilter}&addRecipeNutrition=true&number=${numRecipe}&apiKey=${myStuff}`;
     console.log('fetchAPI dietfilter', dietFilter, 'exclude:', excludeFilter);
-        let menuApi = `js/menustarter.json`; 
+     //   let menuApi = `js/menustarter.json`; 
         console.log('menuApi used is', menuApi);
         let menuData = await fetch(menuApi);
         console.log('menuData fetched is', menuData);
@@ -289,19 +300,15 @@ async function processRecipe() {
     }
 }
 
-async function postRecipe() {
-   // var rbox2 = document.getElementById('recipe2box');
-    console.log('recipeList start of postRecipe', recipeList);
-    console.log('recipeList.firstChild is', recipeList.firstChild);
-    let z=1;
-    while (recipeList.firstChild) {
-        recipeList.removeChild(recipeList.firstChild);
-        console.log('cleanse cycle', z);
-        console.log('next cleanse recipeList.firstChild is', recipeList.firstChild);
-        z++;
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
     }
-    console.log('recipeList is cleansed:', recipeList);
+}
 
+async function postRecipe() {
+    //first clear the display area of old recipes
+    removeAllChildNodes(recipeList);
     try {
         recipedb.recipes.each((recipe) => {
             console.log("postrecipe is", recipe);
@@ -311,11 +318,13 @@ async function postRecipe() {
             console.log(recipe.title,'is the recipe name');
             var image = document.createElement("IMG");
             image.src = recipe.image;
+            image.classList.add('recipe-img');
             let rUrl = document.createElement("A");
             rUrl.href = recipe.spoonacularSourceUrl;
-            rUrl.innerHTML = "Show Recipe";
+            rUrl.innerHTML = "See Recipe";
             rUrl.classList.add("menubtn");
             rUrl.setAttribute('target', '_blank');
+            li.classList.add('singleRecipe');
             li.appendChild(h4);
             li.appendChild(rUrl);
             li.appendChild(image);
@@ -327,46 +336,7 @@ async function postRecipe() {
             console.log('There is an error with postRecipe', err);
         };
     }
-        /*
 
-                      films.forEach((film) => {
-                const li = document.createElement("LI");
-                li.textContent = film.title;
-                movies_list.append(li);
-              });
-        console.log('The recipe number is:', n, 'recipeList is ',recipeList);
-        document.getElementById('recipe1').innerHTML = recipeList[n-1].title;
-        console.log('recipe name is', recipeList[n-1].title);
-
-        document.getElementById('recipe1img').src = recipeList[n-1].image;
-        
-        if (n < recipeList.length) {
-            n++;
-            rbox2.classList.remove("hide-all");
-            document.getElementById('recipe2').innerHTML = recipeList[n-1].title;
-            console.log('2nd recipe name is', recipeList[n-1].title);
-        
-            document.getElementById('recipe2img').src = recipeList[n-1].image;
-        } else {
-            rbox2.classList.add("hide-all");
-        }
-        */
-
-/*
-    if (navigator.onLine) {
-        featurePage.classList.remove('hide-all');
-        featurePage.src = article.link;
-        //clear any previous offline text
-        document.getElementById('offline-article').innerHTML = "";
-        console.log('featurePage via url-link, article no.', n, article.title.rendered);
-    } else {
-        document.getElementById('offline-article').innerHTML = ('<h2>' + article.title.rendered + '</h2>' + article.content.rendered);
-        //clear previous displayed article and remove iframe borders
-        featurePage.src = "";
-        featurePage.classList.add("hide-all");
-        console.log('featurePage via db, article no.', n, article.title.rendered);
-    }
-}*/
 
 
 
