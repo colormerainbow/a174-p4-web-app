@@ -218,7 +218,7 @@ async function changeArticle(e) {
     }
 }
 
-//Detect for request to change the article topic search criteria
+//future: Detect for request to change the article topic search criteria
 
 /* Nutrition - Meal Planning Section */
 
@@ -234,41 +234,40 @@ infobtn.addEventListener("click", infoPage);
 
 function infoPage() {
     window.open('https://spoonacular.com/academy/which-diet-is-best-for-me', '_blank');
-    console.log('info clicked');
 }
 
 async function getRecipe() {
+    //get the user preferences for diet and intolerances
     var dietType = diet.options[diet.selectedIndex].text;
-    console.log('Diet selected:', dietType);
-
     var exclude = allergy.options[allergy.selectedIndex].text;
     var spec = [];
     if (dietType) spec.push(dietType);
     if (exclude) spec.push(`NO ${exclude}`);
 
+    //confirm to the user that inputs are taken for the search
     document.getElementById("choices").innerHTML = spec.join(" and ");
+    console.log('Diet selected:', dietType);
     console.log('Exclude from recipe:', exclude);
 
+    //set up the query string parameters with user selections
     var dietFilter = "";
     var excludeFilter = "";
     if (dietType) {
-        dietFilter=`&diet=${dietType}`;
+        dietFilter = `&diet=${dietType}`;
     }
     if (exclude) {
         excludeFilter = `&intolerances=${exclude}`;
     }
-    
+
     //run the fetch command with user preferences and display recipe options
- 
+
     try {
         let menuApi = `https://api.spoonacular.com/recipes/complexSearch?minProtein=20&maxSodium=500&maxSaturatedFat=3&minFiber=8${excludeFilter}${dietFilter}&addRecipeNutrition=true&number=${numRecipe}&apiKey=${myStuff}`;
-    console.log('fetchAPI dietfilter', dietFilter, 'exclude:', excludeFilter);
-     //   let menuApi = `js/menustarter.json`; 
+        console.log('fetchAPI dietfilter', dietFilter, 'exclude:', excludeFilter);
+        //   let menuApi = `js/menustarter.json`; 
         console.log('menuApi used is', menuApi);
         let menuData = await fetch(menuApi);
-        console.log('menuData fetched is', menuData);
         let menus = await menuData.json();
-        console.log('menus jsonfmt are', menus);
 
         const menuArray = menus.results;
         console.log('api data fetched is:', menuArray);
@@ -315,7 +314,7 @@ async function postRecipe() {
             const li = document.createElement("LI");
             var h4 = document.createElement("H4");
             h4.innerHTML = recipe.title;
-            console.log(recipe.title,'is the recipe name');
+            console.log(recipe.title, 'is the recipe name');
             var image = document.createElement("IMG");
             image.src = recipe.image;
             image.classList.add('recipe-img');
@@ -330,19 +329,9 @@ async function postRecipe() {
             li.appendChild(image);
             recipeList.appendChild(li);
             console.log('added to html via js at recipeList', recipeList);
-            });
-    
-        }catch (err) {
-            console.log('There is an error with postRecipe', err);
-        };
+        });
+
+    } catch (err) {
+        console.log('There is an error with postRecipe', err);
     }
-
-
-
-
-/* regularly check if internet connectivity is present 
-setInterval(function(){
-    var status = navigator.onLine ? 'You are online!' : 'You are offline!';
-    console.log(status);
-}, 5000); 
-*/
+}
